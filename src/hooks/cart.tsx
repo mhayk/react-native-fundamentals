@@ -102,6 +102,10 @@ const CartProvider: React.FC = ({ children }) => {
     );
     cartProducts[productIndex].quantity -= 1;
 
+    if (cartProducts[productIndex].quantity === 0) {
+      cartProducts.splice(productIndex, 1);
+    }
+
     await AsyncStorage.setItem(
       '@GoMarketplace:items',
       JSON.stringify(cartProducts),
